@@ -488,7 +488,8 @@ function updateCartDisplay() {
                 const ordersCollectionRef = collection(db, `artifacts/${appId}/orders`);
                 await addDoc(ordersCollectionRef, orderDetails);
 
-                const response = await fetch('/initiate-order-chat', {
+                const backendUrl = 'https://9d108297-d362-416e-a69d-906e36b011bb-00-3mysvfgr7g7y5.pike.replit.dev/';
+                const response = await fetch(`${backendUrl}/initiate-order-chat`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(orderDetails), 
@@ -627,7 +628,7 @@ if (chatbotForm) {
             const chatHistoryDocs = (await getDocs(query(collection(db, `artifacts/${appId}/users/${currentUserId}/chat_history`), orderBy('timestamp', 'asc')))).docs;
             const chatHistoryContext = chatHistoryDocs.map(doc => doc.data());
 
-            const response = await fetch('/chat', {
+            const response = await fetch('/chat',  {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ customer: customerInfoForChat, message: userMessage, history: chatHistoryContext }),
