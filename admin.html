@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Halu</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #FFC107;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="email"],
+        input[type="password"] {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            width: calc(100% - 24px);
+        }
+        button {
+            background-color: #FFC107;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #FFA000;
+        }
+        #login-error, #dashboard-error-orders, #dashboard-error-feedback {
+            color: red;
+            margin-top: 10px;
+            font-weight: bold;
+            display: none;
+        }
+        #dashboard-section {
+            display: none;
+            max-width: 900px;
+            width: 100%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        #dashboard-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #orders-list, #feedback-list {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .order-item, .feedback-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: relative; 
+        }
+        .order-header, .feedback-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 5px;
+        }
+        .order-item p, .feedback-item p {
+            margin: 5px 0;
+        }
+        .order-items-list {
+            list-style: disc;
+            margin-left: 20px;
+            padding: 0;
+        }
+        .order-items-list li {
+            margin-bottom: 3px;
+        }
+        #admin-info {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        #admin-info button {
+            margin-left: 10px;
+            background-color: #e74c3c;
+        }
+        #admin-info button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Status Badge */
+        .order-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: white;
+            font-size: 0.8em;
+        }
+        .status-pending { background-color: #FFC107; } 
+        .status-completed { background-color: #4CAF50; } 
+
+        /* Tombol Selesai */
+        .mark-completed-button, .delete-order-button { /* Tambah .delete-order-button */
+            background-color: #2196F3; 
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+            margin-right: 10px; /* Memberi jarak jika ada dua tombol */
+        }
+        .mark-completed-button:hover {
+            background-color: #1976D2;
+        }
+        .mark-completed-button[disabled] {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .delete-order-button { /* Gaya khusus untuk tombol hapus */
+            background-color: #f44336; /* Merah */
+        }
+        .delete-order-button:hover {
+            background-color: #da190b;
+        }
+        .order-actions {
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    display: flex;
+    gap: 10px; /* Jarak antar tombol */
+}
+
+.order-actions button {
+    flex-grow: 1; /* Membuat tombol mengisi ruang yang sama */
+    padding: 10px;
+    font-size: 0.9em;
+}
+
+/* Beri warna berbeda untuk tombol batalkan dan hapus */
+.cancel-order-button, .delete-order-button {
+    background-color: #f44336; /* Merah */
+}
+.cancel-order-button:hover, .delete-order-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Gaya untuk tombol pesan cepat (jika belum ada) */
+.quick-message-button {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    margin-right: 5px;
+    font-size: 0.9em;
+}
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container, #dashboard-section {
+                width: 95%;
+                margin: 10px auto;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="login-section">
+        <h1>Warung Halu</h1>
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="admin-email">Email:</label>
+            <input type="email" id="admin-email" required>
+
+            <label for="admin-password">Password:</label>
+            <input type="password" id="admin-password" required>
+
+            <button type="submit">Login</button>
+            <p id="login-error"></p>
+        </form>
+    </div>
+
+    <div id="dashboard-section">
+        <div id="admin-info">
+            Selamat datang, <span id="admin-email-display"></span>!
+            <button id="logout-button">Logout</button>
+        </div>
+        
+        <h2>Daftar Pesanan Terbaru</h2>
+        <p id="dashboard-error-orders"></p>
+        <div id="orders-list">
+            <p>Memuat pesanan...</p>
+        </div>
+
+        <h2 style="margin-top: 40px;">Kritik & Saran</h2>
+        <p id="dashboard-error-feedback"></p>
+        <div id="feedback-list">
+            <p>Memuat kritik & saran...</p>
+        </div>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

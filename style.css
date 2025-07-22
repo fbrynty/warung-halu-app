@@ -1,0 +1,406 @@
+/* Styling Umum */
+body { font-family: sans-serif; margin: 0; background-color: #f4f4f4; color: #333; }
+
+/* Header */
+header { background-color: #FFC107; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.logo { display: flex; align-items: center; gap: 10px; }
+.header-logo { height: 50px; width: auto; border-radius: 5px; }
+.logo-text { font-size: 30px; font-weight: bold; color: #fff; }
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+nav ul li { margin-left: 20px; }
+nav ul li a { text-decoration: none; color: #fff; font-weight: bold; transition: color 0.3s ease; font-size: 1em; }
+nav ul li a:hover { color: #333; }
+
+/* Hero Section */
+.hero {
+    position: relative; /* Diperlukan agar elemen di dalamnya bisa diatur posisinya */
+    height: 100vh; /* Tinggi section, sesuaikan jika perlu */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Memastikan gambar tidak keluar dari area hero */
+}
+
+.hero-image {
+    position: absolute;
+    top: 1;
+    left: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Memastikan gambar menutupi area tanpa distorsi */
+}
+
+
+
+/* Section Umum */
+.menu-section, .about-section, .feedback-section { padding: 35px 25px; max-width: 1200px; margin: 0 auto; }
+h2 { text-align: center; margin-bottom: 25px; color: #FFC107; font-size: 1.85em; }
+
+/* Menu Tabs */
+.menu-tabs { text-align: center; margin-bottom: 20px; }
+.tab-button { background-color: #f0f0f0; border: 1px solid #ddd; padding: 10px 20px; margin: 0 5px; cursor: pointer; border-radius: 5px; font-size: 1em; transition: background-color 0.3s ease; }
+.tab-button.active { background-color: #FFC107; color: white; border-color: #FFC107; }
+.tab-button:hover:not(.active) { background-color: #e0e0e0; }
+
+/* Menu Items */
+.menu-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+.menu-item { background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s ease; }
+.menu-item:hover { transform: translateY(-5px); }
+.menu-item img { width: 100%; height: 250px; object-fit: cover; }
+.menu-details { padding: 20px; }
+.menu-details h3 { margin-top: 0; color: #FFC107; }
+.menu-details p { font-size: 0.9em; color: #666; }
+.menu-details .price { font-weight: bold; color: #10100f; font-size: 1.2em; margin-top: 10px; }
+
+/* Quantity Control */
+.quantity-control { display: flex; align-items: center; justify-content: center; margin-top: 10px; gap: 5px; }
+.quantity-control button { background-color: #4CAF50; color: white; padding: 5px 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 1.1em; transition: background-color 0.3s ease; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+.quantity-control button:hover:not(:disabled) { background-color: #45a049; }
+.quantity-control button:disabled { background-color: #cccccc; cursor: not-allowed; }
+.quantity-control input[type="number"] { width: 60px; text-align: center; padding: 8px 0; border: 1px solid #ddd; border-radius: 4px; font-size: 1em; -moz-appearance: textfield; }
+.quantity-control input[type="number"]::-webkit-outer-spin-button,
+.quantity-control input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* Ringkasan Keranjang Belanja */
+.cart-summary { background-color: #fff; padding: 20px; margin-top: 40px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; }
+.cart-summary h3 { color: #FFC107; margin-bottom: 32px; font-size: 1.85em; font-weight: bold; text-align: center; }
+#cart-items { text-align: left; margin-bottom: 20px; max-height: 200px; overflow-y: auto; border-bottom: none; padding-bottom: 0px; font-size: 1.1em; }
+.cart-item-detail { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px dotted #f0f0f0; }
+.cart-item-detail:last-child { border-bottom: none; }
+.cart-item-detail button { background-color: #E64A19; color: white; border: none; padding: 4px 8px; border-radius: 3px; cursor: pointer; font-size: 0.8em; }
+.cart-shipping-fee { font-size: 1em; font-weight: bold; color: #222; border-bottom: 1px solid #cccccc; padding-bottom: 18px; margin-bottom: 18px; display:flex; justify-content: space-between; }
+.cart-total { font-size: 1.1em; font-weight: bold; color: #FFC107; margin-top: 25px; margin-bottom: 24px; display:flex; justify-content: space-between; }
+
+/* Primary Button */
+.btn-primary { background-color: #FFC107; color: white; padding: 10px 0px; border: none; border-radius: 14px; cursor: pointer; font-size: 1.1em; transition: background-color 0.3s ease; width: 100%; margin-top: 10px; font-weight: bold; letter-spacing: 0.5px; box-shadow: 0 2px 3px rgba(251,181,59,0.08); text-align: center; }
+.btn-primary:hover { background-color: #FFA000; }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); }
+.modal-content { background-color: #fefefe; margin: 5% auto; padding: 30px; border: 1px solid #888; border-radius: 10px; width: 80%; max-width: 600px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; right: 15px; top: 10px; }
+.close-button:hover, .close-button:focus { color: black; text-decoration: none; cursor: pointer; }
+.modal-content h2 { text-align: center; color: #FFC107; margin-bottom: 20px; }
+.modal-content form { display: flex; flex-direction: column; }
+.modal-content label { margin-bottom: 8px; font-weight: bold; }
+
+/* Inputs & Textareas Umum */
+input[type="text"], input[type="alamat"], textarea { padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 1em; width: calc(100% - 22px); }
+
+#lokasi-kami p {
+    color: #666; /* Warna teks paragraf */
+    line-height: 1.6; /* Spasi baris */
+    margin-bottom: 10px;
+    text-align: center; /* Pusatkan teks paragraf */
+}
+#lokasi-kami address {
+    display: block;
+    text-align: center;
+    font-style: italic;
+    color: #222;
+    font-size: 1.5em;
+    margin-bottom: 18px;
+    margin-top: 0;
+    font-weight: 400;
+}
+.lokasi-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 30px;
+    max-width: 860px;
+    margin: 20px auto 0 auto; 
+    box-sizing: border-box;
+}
+.map-container {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 0 auto;
+    background: #fff;
+}
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0; /* Hapus border iframe */
+}
+/* Feedback Section */
+.feedback-section { background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-top: 30px; max-width: 800px; margin-left: auto; margin-right: auto; }
+.feedback-section h2 { color: #FFC107; margin-bottom: 20px; }
+.feedback-section .form-group { margin-bottom: 15px; }
+.feedback-section label { display: block; margin-bottom: 5px; font-weight: bold; }
+.feedback-section .btn-primary { width: 100%; }
+
+/* 1. Ikon Chat (Tombol Bulat di Pojok) */
+#chat-icon {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #a52a2a;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 999;
+    transition: transform 0.2s ease-in-out;
+}
+#chat-icon:hover {
+    transform: scale(1.1);
+}
+
+/* 2. Widget Chat (Jendela Pop-up) */
+#chatbot-widget {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    width: 90%;
+    max-width: 400px;
+    height: 70vh;
+    max-height: 550px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    z-index: 1000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+.chat-message {
+    display: flex;
+    margin-bottom: 15px;
+    max-width: 95%; /* Agar bubble tidak menempel ke ujung */
+}
+
+/* Mengatur pesan PENGGUNA (Anda) agar ke kanan */
+.chat-message.user {
+    justify-content: flex-end; /* Mendorong bubble ke ujung kanan */
+    margin-left: auto; /* Trik agar container juga ikut ke kanan */
+    margin-right: 5px;
+}
+
+/* Mengatur pesan BOT (Halu) agar ke kiri */
+.chat-message.bot {
+    justify-content: flex-start; /* Menjaga bubble di ujung kiri */
+    margin-right: auto;
+    margin-left: 5px;
+}
+
+/* Warna bubble khusus untuk BOT */
+.chat-message.bot .message-bubble {
+    background-color: #e9ecef; /* Warna abu-abu netral */
+    color: #212529;
+    /* Membuat sudut kiri bawah sedikit runcing */
+    border-bottom-left-radius: 5px;
+}
+#chatbot-widget.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+/* 3. Header di dalam Widget */
+.widget-header {
+    background-color: #FFC107;
+    color: #a52a2a;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+.widget-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #a52a2a;
+}
+#close-chat-button {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #0f0e0e;
+    cursor: pointer;
+}
+
+/* 4. Area Chat History & Bubble Chat (Gaya Baru Minimalis) */
+#chat-history {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.chat-message {
+    padding: 12px 16px;
+    border-radius: 18px;
+    max-width: 80%;
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+.chat-message .text { /* Hanya ada text di dalam bubble */
+    font-size: 0.95em;
+    margin: 0;
+}
+.chat-message.bot {
+    align-self: flex-start;
+    background-color: #f0f0f0;
+    color: #333;
+}
+.chat-message.user {
+    align-self: flex-end;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #e9e9e9;
+}
+
+/* 5. Form Input Pesan di Widget */
+#chatbot-form {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #ffffff;
+    border-top: 1px solid #f0f0f0;
+}
+#chatbot-form input {
+    flex-grow: 1;
+    border: none;
+    background-color: #f1f3f4;
+    padding: 14px 25px;
+    border-radius: 25px;
+    font-size: 1rem;
+    margin-right: 10px;
+    outline: none;
+}
+#chatbot-form button {
+    border: none;
+    background-color: #a52a2a; /* Merah marun */
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 14px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+#chatbot-form button:hover {
+    background-color: #8c2323;
+}
+.hidden {
+    display: none !important;
+}
+
+.level-selector {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.level-selector label {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.level-selector select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+/* Footer */
+footer {
+    background-color: #222; /* Warna abu-abu tua */
+    color: #f0f0f0; /* Warna teks putih keabuan */
+    padding: 30px 30px 20px 30px;
+    margin-top: 40px;
+    font-family: Arial, sans-serif; /* Font yang bersih dan modern */
+}
+
+.footer-content {
+    display: grid;
+    /* Membuat 2 kolom di layar besar, kolom kiri lebih besar */
+    grid-template-columns: 2fr 1fr;
+    gap: 40px; /* Jarak antar kolom */
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.footer-column.about {
+    padding-right: 20px; /* Beri sedikit ruang di kanan kolom kiri */
+}
+
+.footer-title {
+    font-family: 'Helvetica Neue', sans-serif; 
+    font-size: 2.5em;
+    color: #a52a2a; /* Warna merah tua */
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+
+.footer-column p {
+    line-height: 1.7;
+    font-size: 1.1em;
+    color: #dcdcdc;
+}
+
+.footer-column.info h4 {
+    font-size: 1.2em;
+    color: #FFC107; /* Warna kuning/emas */
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.footer-column.info p {
+    font-size: 1em;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 10px;
+    color: #b0b0b0; /* Warna teks copyright yang lebih redup */
+    font-size: 0.9em;
+}
+/* Responsive */
+@media (max-width: 768px) {
+    header { flex-direction: column; text-align: center; }
+    nav ul { margin-top: 10px; flex-wrap: wrap; justify-content: center; }
+    nav ul li { margin: 5px 10px; }
+    .menu-items { grid-template-columns: 1fr; }
+    .modal-content { width: 95%; margin: 20px auto; }
+    /* Penyesuaian widget chat untuk mobile */
+    #chatbot-widget {
+        right: 10px;
+        bottom: 80px;
+        width: calc(100% - 20px);
+    }
+    #chat-icon {
+        right: 15px;
+        bottom: 15px;
+    }
+    .hero {
+        height: 40vh; /* Tinggi lebih pendek di HP */
+    }
+    .footer-content {
+        grid-template-columns: 1fr; /* Ubah menjadi 1 kolom */
+        text-align: center; /* Pusatkan teks di HP */
+    }
+
+    .footer-column.about {
+        padding-right: 0;
+    }
+}
