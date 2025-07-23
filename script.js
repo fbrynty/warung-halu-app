@@ -628,7 +628,7 @@ if (chatbotForm) {
             const chatHistoryDocs = (await getDocs(query(collection(db, `artifacts/${appId}/users/${currentUserId}/chat_history`), orderBy('timestamp', 'asc')))).docs;
             const chatHistoryContext = chatHistoryDocs.map(doc => doc.data());
 
-            const response = await fetch('/chat',  {
+            const response = await fetch(`${backendUrl}/chat`,  {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ customer: customerInfoForChat, message: userMessage, history: chatHistoryContext }),
