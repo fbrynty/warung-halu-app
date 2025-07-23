@@ -65,7 +65,7 @@ nav ul li a:hover, nav ul li a.active {
 
 .hero {
     position: relative;
-    height: 90vh; /* Sedikit lebih pendek agar konten di bawah terlihat */
+    height: 100vh; /* Sedikit lebih pendek agar konten di bawah terlihat */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -497,10 +497,10 @@ footer {
 
     /* --- Beranda (Hero Section) --- */
     .hero {
-        height: 50vh;
+        height: 30vh;
     }
     .hero-image {
-        object-position: center 30%;
+        object-position: center 90%;
     }
 
     /* --- Menu Section --- */
