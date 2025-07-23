@@ -17,7 +17,7 @@ const CHAT_HISTORY_EXPIRATION_MS = 30 * 60 * 1000;
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Elements ---
-    const backendUrl = 'https://9d108297-d362-416e-a69d-906e36b011bb-00-3mysvfgr7g7y5.pike.replit.dev/';
+    const backendUrl = 'https://9d108297-d362-416e-a69d-906e36b011bb-00-3mysvfgr7g7y5.pike.replit.dev';
     const menuList = document.getElementById('menu-list');
     const cartItemsDiv = document.getElementById('cart-items');
     const cartTotalPriceSpan = document.getElementById('cart-total-price');
