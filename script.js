@@ -17,6 +17,7 @@ const CHAT_HISTORY_EXPIRATION_MS = 30 * 60 * 1000;
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Elements ---
+    const backendUrl = 'https://9d108297-d362-416e-a69d-906e36b011bb-00-3mysvfgr7g7y5.pike.replit.dev/';
     const menuList = document.getElementById('menu-list');
     const cartItemsDiv = document.getElementById('cart-items');
     const cartTotalPriceSpan = document.getElementById('cart-total-price');
@@ -412,7 +413,7 @@ function updateCartDisplay() {
 
     const subtotal = cart.reduce((sum, item) => sum + (item.harga * item.quantity), 0);
     confirmOrderButton.style.display = cart.length === 0 ? 'none' : 'block';
-    cartTotalPriceSpan.textContent = formatRupiah(subtotal); // Total sama dengan subtotal karena ongkir dihapus
+    cartTotalPriceSpan.textContent = formatRupiah(subtotal); 
 
     cartItemsDiv.querySelectorAll('button').forEach(b => b.addEventListener('click', e => setQuantity(e.target.dataset.id, 0)));
 }
@@ -488,7 +489,6 @@ function updateCartDisplay() {
                 const ordersCollectionRef = collection(db, `artifacts/${appId}/orders`);
                 await addDoc(ordersCollectionRef, orderDetails);
 
-                const backendUrl = 'https://9d108297-d362-416e-a69d-906e36b011bb-00-3mysvfgr7g7y5.pike.replit.dev/';
                 const response = await fetch(`${backendUrl}/initiate-order-chat`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -638,21 +638,18 @@ if (chatbotForm) {
             
             const data = await response.json();
             if (response.ok) {
-                await saveChatMessage('bot', data.reply); // Simpan balasan bot yang berhasil
+                await saveChatMessage('bot', data.reply); 
             } else {
-                // Tampilkan pesan error sementara, jangan simpan ke Firestore
                 displayTemporaryBotMessage(`Maaf, terjadi kesalahan dari server: ${data.error || 'Unknown error'}.`);
             }
         } catch (error) {
             if (loadingMessageElement) loadingMessageElement.remove();
             console.error('Error sending message to chatbot:', error);
-            // Tampilkan pesan error sementara, jangan simpan ke Firestore
             displayTemporaryBotMessage(`Maaf, terjadi kesalahan koneksi. Silakan coba lagi nanti.`);
         }
     });
 }
 
-// Logika untuk menampilkan/menyembunyikan widget chatbot
 if (chatIcon && chatbotWidget && closeChatButton) {
     const openChat = () => {
         if (chatbotWidget) chatbotWidget.classList.remove('hidden');
@@ -667,8 +664,7 @@ if (chatIcon && chatbotWidget && closeChatButton) {
     
     chatIcon.addEventListener('click', openChat);
     closeChatButton.addEventListener('click', closeChat);
-    
-    // Juga tambahkan listener untuk link navigasi jika ada
+
     if (navChatbotLink) {
         navChatbotLink.addEventListener('click', (e) => {
             e.preventDefault();
