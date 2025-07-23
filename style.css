@@ -500,6 +500,7 @@ footer {
         height: 30vh;
     }
     .hero-image {
+        padding: 40px;
         object-position: center 90%;
     }
 
