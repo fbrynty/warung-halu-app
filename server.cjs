@@ -13,7 +13,7 @@ const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
 
 app.use(express.json());
-app.use(express.static(__dirname));
+app.use(express.static(__dirname)); 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
@@ -50,7 +50,7 @@ app.post('/initiate-order-chat', async (req, res) => {
             return res.json({ reply: ownerContactMessage });
         }
 
-        const promptToCustomer = `Anda adalah chatbot konfirmasi pesanan untuk Warung Halu.
+        const promptToCustomer = `Anda adalah Virtual Assistant konfirmasi pesanan untuk Warung Halu.
         Berikut adalah detail pesanan yang baru diterima:
         ${orderSummary}
         
@@ -97,7 +97,7 @@ app.post('/chat', async (req, res) => {
             });
         }
 
-        const prompt = `Anda adalah chatbot untuk Warung Halu. Warung Halu menyajikan makanan pedas seperti Mie Jebew dan Cibayyy.
+        const prompt = `Anda adalah Virtual Assistant untuk Warung Halu. Warung Halu menyajikan makanan pedas seperti Mie Jebew dan Cibayyy.
         Informasi pelanggan saat ini:
         Nama: ${customer.nama || 'Tidak diketahui'}
         Whatsapp: ${customer.whatsapp || 'Tidak diketahui'}
