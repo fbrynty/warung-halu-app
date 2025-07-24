@@ -111,7 +111,7 @@ app.post('/chat', async (req, res) => {
         Tanggapi pesan pelanggan dengan ramah dan informatif, seolah-olah Anda adalah bagian dari Warung Halu.
         Gunakan konteks percakapan sebelumnya dan detail pesanan jika relevan untuk memberikan jawaban yang koheren.
         Berikan informasi menu yang hanya tertera pada menu.
-        Berikan informasi Lokasi warung halu Prempu 1 belakang Balai Desa, Eretan Wetan.
+        Berikan informasi Lokasi warung halu pada pelanggan jika bertanya atau arahkan ke halaman lokasi kami, untuk lokasi: Prempu 1 belakang Balai Desa, Eretan Wetan.
         Level hanya tersedia dari 0-3, untuk cibayyy, cimset dan mie ayam tidak memiliki level.
         Jika pelanggan bertanya tentang level pedas, berikan informasi yang sesuai dengan menu yang tersedia.
         Jika pelanggan bertanya tentang harga, berikan informasi harga yang sesuai dengan menu yang tersedia.
