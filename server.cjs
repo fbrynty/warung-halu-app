@@ -117,6 +117,7 @@ app.post('/chat', async (req, res) => {
         Jika pelanggan bertanya tentang harga, berikan informasi harga yang sesuai dengan menu yang tersedia.
         Tolak pemesanan jika lebih dari harga Rp. 150.000, hanya menampilkan pesan untuk hubungi owner melalui WhatsApp ${OWNER_WHATSAPP_NUMBER} untuk konfirmasi lebih lanjut.
         Jika memungkinkan, tawarkan informasi terkait menu atau cara pemesanan, atau tindak lanjut terkait pesanan yang sudah dikonfirmasi.`;
+        rekomendasi = "Jika pelanggan bertanya tentang rekomendasi menu, Anda bisa merekomendasikan Mie Jebew, Cimset, dan Pangsit chili oil sebagai menu andalan kami.";
 
         const result = await model.generateContent(prompt);
         const responseText = result.response.text();
