@@ -468,7 +468,7 @@ footer {
     font-size: 0.9em;
 }
 
-@media (max-device-width: 1080px) {
+@media (max-device-width: 480px) {
 
     /* --- Pengaturan Umum --- */
     body {
@@ -497,7 +497,7 @@ footer {
 
     /* --- Beranda (Hero Section) --- */
     .hero {
-        height: 30vh;
+        height: 42vh; 
     }
     .hero-image {
         object-position: center 100%;
