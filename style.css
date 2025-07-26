@@ -497,7 +497,8 @@ footer {
 
     /* --- Beranda (Hero Section) --- */
     .hero {
-        height: 35vh;
+        height: 50vh;
+        weight: 50vh;
     }
     .hero-image {
         object-position: center 30%;
