@@ -497,10 +497,10 @@ footer {
 
     /* --- Beranda (Hero Section) --- */
     .hero {
-        height: default;
+        height: 80vh;
     }
     .hero-image {
-        object-position: center 20%;
+        object-position: center 100%;
     }
 
     /* --- Menu Section --- */
