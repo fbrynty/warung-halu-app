@@ -1,0 +1,544 @@
+/* Styling Umum & Reset Dasar */
+* {
+    box-sizing: border-box; /* Membuat layout lebih mudah diatur */
+}
+
+html {
+    scroll-behavior: smooth; 
+}
+
+body { 
+    font-family: 'Helvetica Neue', Arial, sans-serif; 
+    margin: 0; 
+    background-color: #f8f9fa; /* Warna latar sedikit lebih cerah */
+    color: #333; 
+    line-height: 1.6;
+}
+
+/* Header */
+header { 
+    background-color: #FFC107; 
+    padding: 15px 25px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky; /* Membuat header tetap di atas saat scroll */
+    top: 0;
+    z-index: 1001;
+}
+.logo { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+.header-logo { 
+    height: 50px; 
+    width: auto; 
+}
+.logo-text { 
+    font-size: 1.8em; 
+    font-weight: bold; 
+    color: #fff; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+nav ul { 
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    display: flex; 
+    gap: 25px;
+}
+nav ul li a { 
+    text-decoration: none; 
+    color: #fff; 
+    font-weight: bold; 
+    transition: color 0.3s ease, border-bottom-color 0.3s ease; 
+    font-size: 1em; 
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+}
+nav ul li a:hover, nav ul li a.active { 
+    color: #333; 
+    border-bottom-color: #333;
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    top: 2;
+    left: 2;
+    width: 102%;
+    height: 102%;
+    object-fit: cover;
+    filter: brightness(0.90);
+}
+
+/* Section Umum */
+.menu-section, .location-section, .feedback-section, .recommendation-section { 
+    padding: 50px 25px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+h2 { 
+    text-align: center; 
+    margin-top: 0;
+    margin-bottom: 40px; 
+    color: #333; 
+    font-size: 2.2em; 
+    font-weight: 700;
+}
+
+/* Rekomendasi */
+.recommendation-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.rec-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.rec-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.rec-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.rec-card-content {
+    padding: 20px;
+}
+.rec-card-content h3 {
+    margin-top: 0;
+    color: #FFC107;
+}
+.recommendation-footer {
+    text-align: center;
+    margin-top: 40px;
+}
+.btn-see-all {
+    display: inline-block;
+    background-color: #a52a2a;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.btn-see-all:hover {
+    background-color: #8c2323;
+}
+
+
+/* Menu Tabs */
+.menu-tabs { text-align: center; margin-bottom: 30px; }
+.tab-button { 
+    background-color: #fff; 
+    border: 1px solid #ddd; 
+    padding: 10px 25px; 
+    margin: 5px; /* Tambahkan margin agar tidak menempel saat wrap */
+    cursor: pointer; 
+    border-radius: 20px; 
+    font-size: 1em; 
+    transition: all 0.3s ease; 
+}
+.tab-button.active { 
+    background-color: #FFC107; 
+    color: white; 
+    border-color: #FFC107; 
+    transform: scale(1.05);
+}
+.tab-button:hover:not(.active) { background-color: #e9e9e9; }
+
+/* Menu Items */
+.menu-items { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 30px; 
+}
+.menu-item { 
+    background-color: #fff; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+    overflow: hidden; 
+    transition: transform 0.3s ease; 
+    display: flex;
+    flex-direction: column;
+}
+.menu-item:hover { transform: translateY(-5px); }
+.menu-item img { width: 100%; height: 220px; object-fit: cover; }
+.menu-details { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+.menu-details h3 { margin-top: 0; color: #333; }
+.menu-details p { font-size: 0.9em; color: #666; flex-grow: 1; }
+.menu-details .price { font-weight: bold; color: #a52a2a; font-size: 1.2em; margin-top: 10px; }
+
+/* --- PERBAIKAN: Mengembalikan gaya Quantity Control seperti sebelumnya --- */
+.quantity-control { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-top: 15px; 
+    gap: 5px; 
+}
+.quantity-control button { 
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 5px 12px; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 1.1em; 
+    transition: background-color 0.3s ease; 
+    width: 40px; 
+    height: 40px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+.quantity-control button:hover:not(:disabled) { background-color: #45a049; }
+.quantity-control button:disabled { background-color: #cccccc; cursor: not-allowed; }
+.quantity-control input[type="number"] { 
+    width: 60px; 
+    text-align: center; 
+    padding: 8px 0; 
+    border: 1px solid #ddd; 
+    border-radius: 4px; 
+    font-size: 1em; 
+    -moz-appearance: textfield; 
+}
+.quantity-control input::-webkit-outer-spin-button,
+.quantity-control input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* Ringkasan Keranjang Belanja */
+.cart-summary { background-color: #fff; padding: 25px; margin-top: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+.cart-summary h3 { color: #333; margin-top: 0; margin-bottom: 25px; font-size: 1.5em; }
+#cart-items { text-align: left; margin-bottom: 15px; max-height: 250px; overflow-y: auto; }
+.cart-item-detail { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+.cart-item-detail:last-child { border-bottom: none; }
+.cart-item-detail button { background-color: #E64A19; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
+.cart-total { font-size: 1.2em; font-weight: bold; color: #333; margin-top: 20px; display:flex; justify-content: space-between; }
+
+/* Primary Button */
+.btn-primary { 
+    background-color: #a52a2a; 
+    color: white; 
+    padding: 15px; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-size: 1.1em; 
+    transition: background-color 0.3s ease; 
+    width: 100%; 
+    margin-top: 20px; 
+    font-weight: bold; 
+    text-align: center; 
+}
+.btn-primary:hover { background-color: #8c2323; }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 1002; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); }
+.modal-content { background-color: #fefefe; margin: 10% auto; padding: 30px; border: none; border-radius: 15px; width: 90%; max-width: 500px; position: relative; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+.close-button { color: #aaa; position: absolute; right: 20px; top: 15px; font-size: 28px; font-weight: bold; }
+.close-button:hover, .close-button:focus { color: black; text-decoration: none; cursor: pointer; }
+.modal-content h2 { color: #333; }
+.modal-content form { display: flex; flex-direction: column; }
+.modal-content label { margin-bottom: 8px; font-weight: bold; }
+input[type="text"], input[type="alamat"], input[type="email"], textarea { 
+    padding: 12px; 
+    margin-bottom: 15px; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    font-size: 1em; 
+    width: 100%; 
+}
+
+/* Lokasi */
+.lokasi-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    padding: 30px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+.lokasi-card p {
+    text-align: center;
+}
+.lokasi-card address {
+    text-align: center;
+    font-style: normal;
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    height: 350px;
+}
+.map-container iframe { width: 100%; height: 100%; border: 0; }
+
+/* Feedback Section */
+.feedback-section { background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); max-width: 800px; margin: 30px auto; }
+.feedback-section .form-group { margin-bottom: 15px; }
+.feedback-section label { display: block; margin-bottom: 5px; font-weight: bold; }
+
+/* --- Ikon & Widget Chat --- */
+#chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #a52a2a;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 999;
+    transition: transform 0.2s ease-in-out;
+}
+#chat-icon:hover { transform: scale(1.1); }
+
+#chatbot-widget {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 90%;
+    max-width: 380px;
+    height: 70vh;
+    max-height: 600px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    z-index: 1000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+#chatbot-widget.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+.widget-header {
+    background-color: #FFC107;
+    color: #a52a2a;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    flex-shrink: 0; /* Mencegah header menyusut */
+}
+.widget-header h2 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #a52a2a;
+}
+#close-chat-button {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 1.8em;
+    color: #a52a2a;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* --- Perbaikan Bubble Chat --- */
+#chat-history {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+.chat-message {
+    display: flex;
+    margin-bottom: 12px;
+    max-width: 90%;
+}
+.chat-message.user {
+    justify-content: flex-end;
+    align-self: flex-end;
+}
+.chat-message.bot {
+    justify-content: flex-start;
+    align-self: flex-start;
+}
+.message-bubble {
+    padding: 10px 15px;
+    border-radius: 18px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+.chat-message.user .message-bubble {
+    background-color: #a52a2a;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+.chat-message.bot .message-bubble {
+    background-color: #f1f3f4;
+    color: #333;
+    border-bottom-left-radius: 4px;
+}
+
+#chatbot-form {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    flex-shrink: 0; /* Mencegah form menyusut */
+}
+#chatbot-form input {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 12px 18px;
+    border-radius: 22px;
+    font-size: 1rem;
+    margin-right: 10px;
+    outline: none;
+}
+#chatbot-form button {
+    border: none;
+    background-color: #a52a2a;
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+#chatbot-form button:hover { background-color: #8c2323; }
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: #f0f0f0;
+    padding: 40px 25px;
+    margin-top: 40px;
+}
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.footer-column.about .footer-title {
+    font-size: 2em;
+    color: #a52a2a;
+    margin-bottom: 15px;
+}
+.footer-column p { line-height: 1.7; color: #dcdcdc; }
+.footer-column.info h4 { font-size: 1.1em; color: #FFC107; margin-bottom: 10px; }
+.copyright {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid #444;
+    color: #aaa;
+    font-size: 0.9em;
+}
+
+@media (max-device-width: 480px) {
+
+    /* --- Pengaturan Umum --- */
+    body {
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    /* --- Header & Navigasi --- */
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px;
+    }
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0;
+    }
+    nav ul li {
+        margin: 5px 10px;
+    }
+
+    /* --- Beranda (Hero Section) --- */
+    .hero {
+        height: 42vh; 
+    }
+    .hero-image {
+        object-position: center 100%;
+    }
+
+    /* --- Menu Section --- */
+    .menu-section,
+    .recommendation-section {
+        padding: 40px 20px; 
+    }
+    .menu-items,
+    .recommendation-cards {
+        grid-template-columns: 2fr;
+    }
+
+    /* --- Chatbot --- */
+    #chatbot-widget {
+        width: calc(100% - 90px);
+        right: 3.5px;
+        bottom: 85px;
+        max-height: 60vh;
+    }
+    #chat-icon {
+        width: 55px;
+        height: 55px;
+        right: 15px;
+        bottom: 15px;
+    }
+
+    /* --- Kritik & Saran --- */
+    .feedback-section {
+        padding: 30px 20px;
+    }
+
+    /* --- Lokasi --- */
+    .location-section {
+        padding: 40px 20px;
+    }
+    .map-container {
+        height: 250px;
+    }
+
+}

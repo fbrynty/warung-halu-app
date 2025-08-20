@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Warung Halu</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Assets/img/LOGOO.png" alt="Warung Halu Logo" class="header-logo">
+            <span class="logo-text">Warung Halu</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#menu-page">Menu</a></li>
+                <li><a href="#lokasi-kami">Lokasi Kami</a></li>
+                <li><a href="#kritik-saran">Kritik & Saran</a></li>
+                <li><a href="#tentang-kami">Tentang Kami</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="beranda" class="hero">
+            <img src="Assets/img/huha.png" alt="Makanan Pedas" class="hero-image">
+        </section>
+
+        <!-- Bagian Menu -->
+        <section id="menu-page" class="menu-section">
+            <h2>Menu Kami</h2>
+            <div class="menu-tabs">
+                <button class="tab-button active" data-category="semua">Semua</button>
+                <button class="tab-button" data-category="makanan-pedas">Makanan Pedas</button>
+                <button class="tab-button" data-category="makanan-manis">Makanan Manis</button>
+                <button class="tab-button" data-category="minuman">Minuman</button>
+            </div>
+            <div id="menu-list" class="menu-items">
+                <!-- Menu items akan diisi oleh JavaScript -->
+            </div>
+
+            <div class="cart-summary">
+                <h3>Keranjang Belanja</h3>
+                <div id="cart-items">
+                    <p>Keranjang kosong</p>
+                </div>
+                <div class="cart-total">
+                    Total Keseluruhan: <span id="cart-total-price">Rp 0</span>
+                </div>
+                <button id="confirm-order-button" class="btn-primary" style="display: none;">Konfirmasi Pesanan</button>
+            </div>
+        </section>
+
+        <!-- Modal Konfirmasi Pesanan -->
+        <div id="konfirmasi-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-button">×</span>
+                <h2>Detail Kontak & Pengiriman untuk Pesanan</h2>
+                <form id="konfirmasi-form-modal">
+                    <label for="modal-nama">Nama:</label>
+                    <input type="text" id="modal-nama" required>
+                    <label for="modal-whatsapp">No. WhatsApp:</label>
+                    <input type="text" id="modal-whatsapp" placeholder="+628123456789" required>
+                    <p class="note">*Pastikan nomor WhatsApp aktif untuk memproses pesanan</p>
+                    <label for="modal-alamat">Alamat:</label>
+                    <input type="alamat" id="modal-alamat">                                               
+                    <label for="modal-catatan">Catatan untuk Makanan (Opsional):</label>
+                    <textarea id="modal-catatan" rows="3"></textarea>
+                    <button type="submit" class="btn-primary">Kirim Pesanan</button>
+                </form>
+                <div id="konfirmasi-modal-loading" style="display: none; text-align: center; margin-top: 20px;">
+                    <p>Memproses pesanan dan menghubungi chatbot...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lokasi Kami -->
+        <section id="lokasi-kami" class="location-section">
+            <div class="lokasi-card">
+                <h2>Lokasi Warung Halu</h2>
+                <p>Kunjungi kami di alamat berikut:</p>
+                <address class="text-center text-lg font-semibold text-gray-700 not-italic mb-6">
+                    Prempu 1 belakang Balai Desa, Eretan Wetan, Kandanghaur<br>
+                    Indramayu, Jawa Barat 45254
+                </address>
+                <div class="map-container w-full h-80 rounded-lg overflow-hidden shadow-md">
+                    <iframe
+                        src="https://www.google.com/maps?q=M39M%2BVFW%20WARUNG%20HALU%20ATIFA%20CELL,%20Prempu%20Dua,%20Eretan%20Wetan,%20Kec.%20Kandanghaur,%20Kabupaten%20Indramayu,%20Jawa%20Barat%2045254&z=17&output=embed"
+                        width="100%" height="450" style="border:0;"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kritik dan Saran -->
+        <section id="kritik-saran" class="feedback-section">
+            <h2>Kritik & Saran</h2>
+            <p>Bantu kami menjadi lebih baik dengan menyampaikan kritik dan saran Anda.</p>
+            <form id="feedback-form">
+                <div class="form-group">
+                    <label for="feedback-nama">Nama Anda:</label>
+                    <input type="text" id="feedback-nama" placeholder="Nama Anda (opsional)">
+                </div>
+                <div class="form-group">
+                    <label for="feedback-email">Email Anda:</label>
+                    <input type="email" id="feedback-email" placeholder="Email Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-message">Pesan Anda:</label>
+                    <textarea id="feedback-message" rows="5" placeholder="Ketik kritik atau saran Anda di sini..." required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Kirim Kritik & Saran</button>
+                <p id="feedback-status" style="margin-top: 15px;"></p>
+            </form>
+        </section>
+    </main>
+
+<footer>
+    <section id="tentang-kami" class="about-section">
+    <div class="footer-content">
+        <!-- Kolom Kiri: Tentang Kami -->
+        <div class="footer-column about">
+            <h3 class="footer-title">Warung Halu</h3>
+            <p>Kedai kuliner kekinian yang menyajikan berbagai makanan manis dan pedas khas anak muda dengan sentuhan chili oil yang menggoda.</p>
+        </div>
+
+        <!-- Kolom Kanan: Info -->
+        <div class="footer-column info">
+            <h4>Jam Operasional:</h4>
+            <p>Buka sesuai mood UPI</p>
+
+            <h4>Info Kontak:</h4>
+            <p>WhatsApp: <a href="https://wa.me/6282128747493">+62 821-2874-7493</a></p>
+            <p>Sosial Media: <a href=" https://www.facebook.com/share/1HXgeRvmMK/ "><i class="fab fa-facebook"></i>Warung Halu</a></p>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© 2025 Warung Halu</p>
+    </div>
+    </section>
+</footer>
+
+    <div id="chat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30px" height="30px">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+        </svg>
+    </div>
+
+    <div id="chatbot-widget" class="hidden">
+        <div class="widget-header">
+            <h2>Halu</h2>
+            <span id="close-chat-button">×</span> 
+        </div>
+        <div id="chat-history">
+            </div>
+        <form id="chatbot-form">
+            <input type="text" id="chat-input" placeholder="Ketik pesan">
+            <button type="submit">Kirim</button>
+        </form>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
