@@ -16,13 +16,13 @@ let lastMessageTimestamp = 0;
 const CHAT_HISTORY_EXPIRATION_MS = 30 * 60 * 1000; 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- DOM Elements ---
+    const backendUrl = 'warung-halu-app-rpk4-la5j54nhw-fbryntys-projects.vercel.app';
     const menuList = document.getElementById('menu-list');
     const cartItemsDiv = document.getElementById('cart-items');
     const cartTotalPriceSpan = document.getElementById('cart-total-price');
     const confirmOrderButton = document.getElementById('confirm-order-button');
     const menuPageSection = document.getElementById('menu-page');
-    const kontakSection = document.getElementById('kontak'); // Ini adalah section kontak utama
+    const kontakSection = document.getElementById('kontak'); 
     const cartSummary = document.querySelector('.cart-summary'); 
 
     const konfirmasiModal = document.getElementById('konfirmasi-modal');
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalWhatsappInput = document.getElementById('modal-whatsapp');
     const modalAlamatInput = document.getElementById('modal-alamat');
     const modalCatatanInput = document.getElementById('modal-catatan');
-    const modalEmailInput = document.getElementById('modal-email'); // Pastikan ini ada di HTML
+    const modalEmailInput = document.getElementById('modal-email');
 
     const chatbotForm = document.getElementById('chatbot-form');
     const chatInput = document.getElementById('chat-input'); 
@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const feedbackMessageInput = document.getElementById('feedback-message');
     const feedbackStatusP = document.getElementById('feedback-status');
 
-    // --- Elemen baru untuk widget chat ---
     const chatIcon = document.getElementById('chat-icon'); 
     const chatbotWidget = document.getElementById('chatbot-widget'); 
     const closeChatButton = document.getElementById('close-chat-button'); 
