@@ -25,7 +25,7 @@ if (GEMINI_API_KEY) {
 // Konfigurasi CORS untuk mengizinkan permintaan dari domain frontend Anda
 // Ganti 'https://warung-halu-app.vercel.app' dengan domain frontend Anda yang benar
 const corsOptions = {
-  origin: 'https://warung-halu-app.vercel.app', 
+  origin: 'https://warung-hallu-1850.web.app', 
   optionsSuccessStatus: 200
 };
 
