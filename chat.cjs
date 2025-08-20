@@ -1,4 +1,5 @@
 // api/chat.js
+
 require('dotenv').config();
 const express = require('express');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
@@ -21,7 +22,14 @@ if (GEMINI_API_KEY) {
     }
 }
 
-app.use(cors());
+// Konfigurasi CORS untuk mengizinkan permintaan dari domain frontend Anda
+// Ganti 'https://warung-halu-app.vercel.app' dengan domain frontend Anda yang benar
+const corsOptions = {
+  origin: 'https://warung-halu-app.vercel.app', 
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.post('/api/chat', async (req, res) => {
