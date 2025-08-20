@@ -1,83 +1,66 @@
-// api/chat.js
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-require('dotenv').config();
-const express = require('express');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
-const cors = require('cors');
-
-const app = express();
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const OWNER_WHATSAPP_NUMBER = process.env.OWNER_WHATSAPP_NUMBER;
-const ADMIN_WHATSAPP_NUMBER = process.env.ADMIN_WHATSAPP_NUMBER; 
-let genAI;
-let model;
+const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
-// --- Bagian Perbaikan: Memastikan API Key ada sebelum inisialisasi ---
-if (GEMINI_API_KEY) {
-    try {
-        genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-        model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-    } catch (error) {
-        console.error("Error saat inisialisasi GoogleGenerativeAI:", error);
-    }
-}
+export default async function handler(req, res) {
+  // --- CORS Fix ---
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Origin", "https://warung-hallu-1850.web.app");
+  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-const corsOptions = {
-  origin: ['https://warung-hallu-1850.web.app'], // domain frontend kamu
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  optionsSuccessStatus: 200
-};
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
 
-app.use(cors(corsOptions));
-app.use(express.json());
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
 
-app.post('/api/chat', async (req, res) => {
+  try {
     const { customer, message, history } = req.body;
 
-    if (!model) {
-        console.error('Error: Model AI tidak dapat diinisialisasi. Kemungkinan GEMINI_API_KEY tidak valid.');
-        return res.status(500).json({ error: 'Layanan chatbot saat ini tidak tersedia. Silakan coba lagi nanti.' });
+    if (!GEMINI_API_KEY) {
+      return res.status(500).json({ error: "GEMINI_API_KEY belum diatur." });
     }
 
-    try {
-        let conversationContext = "";
-        if (history && history.length > 0) {
-            history.forEach(chatTurn => {
-                const sender = chatTurn.sender === 'user' ? 'Pelanggan' : 'Chatbot';
-                conversationContext += `${sender}: ${chatTurn.text}\n`;
-            });
-        }
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-        const prompt = `Anda adalah Virtual Assistant untuk Warung Halu. Warung Halu menyajikan makanan pedas seperti Mie Jebew dan Cibayyy.
-        Informasi pelanggan saat ini:
-        Nama: ${customer.nama || 'Tidak diketahui'}
-        Whatsapp: ${customer.whatsapp || 'Tidak diketahui'}
-        Alamat: ${customer.alamat || '-'}
-        Catatan Pesanan: ${customer.catatan || '-'}
-        Riwayat Percakapan Sebelumnya:
-        ${conversationContext || 'Belum ada riwayat percakapan.'}
-
-        Pesan Terbaru dari Pelanggan: ${message}
-
-        Tanggapi pesan pelanggan dengan ramah dan informatif, seolah-olah Anda adalah bagian dari Warung Halu.
-        Gunakan konteks percakapan sebelumnya dan detail pesanan jika relevan untuk memberikan jawaban yang koheren.
-        Berikan informasi menu yang hanya tertera pada menu.
-        Berikan informasi Lokasi warung halu pada pelanggan jika bertanya atau arahkan ke halaman lokasi kami, untuk lokasi warung halu: Prempu 1 belakang Balai Desa, Eretan Wetan.
-        Level hanya tersedia dari 0-3, untuk cibayyy, cimset dan mie ayam tidak memiliki level.
-        Jika pelanggan bertanya tentang level pedas, berikan informasi yang sesuai dengan menu yang tersedia.
-        Jika pelanggan bertanya tentang harga, berikan informasi harga yang sesuai dengan menu yang tersedia.
-        Tolak pemesanan jika lebih dari harga Rp. 150.000, hanya menampilkan pesan untuk hubungi owner melalui WhatsApp ${OWNER_WHATSAPP_NUMBER} atau ${ADMIN_WHATSAPP_NUMBER} untuk konfirmasi lebih lanjut.
-        Jika memungkinkan, tawarkan informasi terkait menu atau cara pemesanan, atau tindak lanjut terkait pesanan yang sudah dikonfirmasi.`;
-
-        const result = await model.generateContent(prompt);
-        const responseText = result.response.text();
-        
-        res.json({ reply: responseText });
-    } catch (error) {
-        console.error('Error with Gemini API in /chat endpoint:', error);
-        res.status(500).json({ error: 'Failed to get response from general chatbot. Detailed error: ' + error.message });
+    let conversationContext = "";
+    if (history && history.length > 0) {
+      history.forEach(chatTurn => {
+        const sender = chatTurn.sender === "user" ? "Pelanggan" : "Chatbot";
+        conversationContext += `${sender}: ${chatTurn.text}\n`;
+      });
     }
-});
 
-module.exports = app;
+    // 🔹 Prompt untuk chatbot percakapan umum
+    const prompt = `Anda adalah chatbot untuk Warung Halu. Warung Halu menyajikan makanan pedas seperti Mie Jebew dan Cibayyy.
+
+Informasi pelanggan:
+Nama: ${customer.nama || "-"}
+Whatsapp: ${customer.whatsapp || "-"}
+Alamat: ${customer.alamat || "-"}
+Catatan Pesanan: ${customer.catatan || "-"}
+
+Riwayat Percakapan:
+${conversationContext || "Belum ada riwayat percakapan."}
+
+Pesan terbaru dari pelanggan: ${message}
+
+Tanggapi pesan pelanggan dengan ramah dan informatif, gunakan konteks percakapan. 
+Berikan info menu sesuai daftar resmi. Level pedas hanya 0-3 untuk Mie Jebew. 
+Tolak pemesanan jika total > Rp150.000 dan arahkan ke owner di WhatsApp ${OWNER_WHATSAPP_NUMBER}.`;
+
+    const result = await model.generateContent(prompt);
+    const responseText = result.response.text();
+
+    res.json({ reply: responseText });
+  } catch (error) {
+    console.error("Error di chat.js:", error);
+    res.status(500).json({ error: error.message });
+  }
+}
