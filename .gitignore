@@ -6,16 +6,17 @@ yarn-debug.log*
 yarn-error.log*
 firebase-debug.log*
 firebase-debug.*.log*
+firestore-debug.log
+pglite-debug.log
 
 # Firebase cache
 .firebase/
 
 # Firebase config
-
-# Uncomment this if you'd like others to create their own Firebase project.
-# For a team working on the same Firebase project(s), it is recommended to leave
-# it commented so all members can deploy to the same project(s) in .firebaserc.
-# .firebaserc
+firebase.json
+.firebaserc
+firestore.indexes.json
+firestore.rules
 
 # Runtime data
 pids
@@ -67,14 +68,3 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
-
-# Ignore Firebase configuration files on Vercel
-firebase.json
-.firebaserc
-firestore-debug.log
-firestore.indexes.json
-firestore.rules
-pglite-debug.log
-
-# Ignore node modules
-node_modules
