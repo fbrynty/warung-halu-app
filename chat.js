@@ -22,14 +22,14 @@ if (GEMINI_API_KEY) {
     }
 }
 
-// Konfigurasi CORS untuk mengizinkan permintaan dari domain frontend Anda
-// Ganti 'https://warung-halu-app.vercel.app' dengan domain frontend Anda yang benar
 const corsOptions = {
-  origin: 'https://warung-hallu-1850.web.app', 
+  origin: ['https://warung-hallu-1850.web.app'], // domain frontend kamu
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   optionsSuccessStatus: 200
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.post('/api/chat', async (req, res) => {
