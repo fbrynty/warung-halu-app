@@ -16,7 +16,7 @@ let lastMessageTimestamp = 0;
 const CHAT_HISTORY_EXPIRATION_MS = 30 * 60 * 1000; 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const backendUrl = 'https://warung-halu-ik5a2yogh-fbryntys-projects.vercel.app';
+    const backendUrl = 'https://warung-halu-app.vercel.app';
     const menuList = document.getElementById('menu-list');
     const cartItemsDiv = document.getElementById('cart-items');
     const cartTotalPriceSpan = document.getElementById('cart-total-price');
